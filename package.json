@@ -1,0 +1,27 @@
+{
+  "name": "cw-merkle-deploy",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "upload": "ts-node src/upload.ts",
+    "instantiate": "ts-node src/instantiate.ts",
+    "registerMerkleRoot": "ts-node src/registerMerkleRoot.ts",
+    "claim": "ts-node src/claim.ts",
+    "exportBalances": "ts-node src/exportBalances.ts",
+    "genMerkleRoot": "ts-node src/genMerkleRoot.ts"
+  },
+  "dependencies": {
+    "@cosmjs/cosmwasm-stargate": "^0.38.1",
+    "@cosmjs/proto-signing": "^0.38.1",
+    "@cosmjs/stargate": "^0.38.1",
+    "crypto-js": "^4.2.0",
+    "dotenv": "^16.4.5",
+    "merkletreejs": "^0.3.11"
+  },
+  "devDependencies": {
+    "@types/crypto-js": "^4.2.2",
+    "@types/node": "^20.0.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.5"
+  }
+}
