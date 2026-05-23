@@ -14,6 +14,7 @@
 
 import * as fs from "fs";
 import * as path from "path";
+import { evmosToEth } from '@evmos/address-converter';
 
 const OUTPUT_DIR = "./output";
 
@@ -102,7 +103,8 @@ for (const { address, coins } of bankBalances) {
 
   for (const { denom, amount } of coins) {
     if (denomMap.has(denom)) {
-      denomMap.get(denom)!.push({ address, amount });
+      const addr = address.startsWith("evmos") ? evmosToEth(address) : address; 
+      denomMap.get(denom)!.push({ address: addr, amount });
     }
   }
 }
