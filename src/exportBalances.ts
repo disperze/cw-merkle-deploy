@@ -112,18 +112,23 @@ fs.mkdirSync(OUTPUT_DIR, { recursive: true });
 let exported = 0;
 let skipped = 0;
 
-for (const [denom, entries] of denomMap) {
+  for (const [denom, entries] of denomMap) {
   if (entries.length === 0) {
     console.warn(`  ⚠  No balances found for denom "${denom}" — skipping.`);
     skipped++;
     continue;
   }
 
+  let total = 0n;
+  for (const { amount } of entries) {
+    total += BigInt(amount);
+  }
+
   const filename = `${denomToFilename(denom)}.json`;
   const outPath = path.join(OUTPUT_DIR, filename);
 
   fs.writeFileSync(outPath, JSON.stringify(entries, null, 2), "utf8");
-  console.log(`  ✓  ${denom} → ${filename}  (${entries.length} addresses)`);
+  console.log(`  ✓  ${denom} → ${filename}  (${entries.length} addresses, total: ${total})`);
   exported++;
 }
 
